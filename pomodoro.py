@@ -33,7 +33,10 @@ def long_break():
 def main(n_rounds):
     for i in range(n_rounds):
         pomodoro()
-        short_break()
+        if i%4==0:
+            long_break()
+        else:
+            short_break()
 
 
 if __name__ == "__main__":
