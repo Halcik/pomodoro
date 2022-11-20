@@ -1,11 +1,13 @@
 from datetime import timedelta, datetime
 from playsound import playsound
+import sys
 
 def pomodoro():
     print("Czas na naukę!")
     p_beg = datetime.today()
     p_different = timedelta(minutes=25)
     p_close = p_beg
+    #playsound('muzyka.mp3', False)
     while p_close-p_beg < p_different:
         p_close = datetime.today()
 
@@ -28,7 +30,15 @@ def long_break():
         lb_close = datetime.today()
 
 
-four_rounds = [pomodoro(), short_break(), pomodoro(), short_break(), pomodoro(), short_break(), pomodoro(), long_break()]
+def main(n_rounds):
+    for i in range(n_rounds):
+        pomodoro()
+        short_break()
 
-for i in four_rounds:
-    i
+
+if __name__ == "__main__":
+    if len(sys.argv)==1:
+        n_rounds = 4
+    else:
+        n_rounds = sys.argv[1]
+    main(n_rounds)
